@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fdfdfd;
+  color: #333;
+}
+
+header {
+  background: #5dbb63;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+main {
+  padding: 1.5rem;
+}
+
+form input, form button {
+  padding: 0.5rem;
+  margin: 0.3rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background: #5dbb63;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+#vet-list {
+  list-style: none;
+  padding: 0;
+}
+#vet-list li {
+  background: #eaf7ea;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+}
+ .highlight {
+  background-color: #fff3cd; /* soft yellow */
+  border: 2px solid orange;
+  padding: 8px;
+  border-radius: 8px;
+}
