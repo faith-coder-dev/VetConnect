@@ -1,64 +1,90 @@
 document.addEventListener("DOMContentLoaded", () => {
   const vetList = document.getElementById("vet-list");
   const form = document.getElementById("search-form");
+  const feedback = document.getElementById("search-feedback");
 
-  // Display vets from db.json
+  // Display all vets
   function displayVets() {
     fetch("http://localhost:3000/vets")
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         vetList.innerHTML = "";
-        data.forEach(vet => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-                <p>Name: ${vet.name}</p>
-                <p>Specialty: ${vet.specialty}</p>
-                <p>Location: ${vet.location}</p>
-                <p>Phone: ${vet.contact}</p>
-            `;
-          vetList.appendChild(li);
-        });
+        data.forEach(vet => createVetCard(vet));
       })
       .catch(err => console.error("Error fetching vets:", err));
+
   }
 
-  // Handle form submit
+
+  // Create vet card 
+  function createVetCard(vet, highlight = false) {
+    const li = document.createElement("li");
+    li.classList.add("vet-card");
+    if (highlight) li.classList.add("highlight");
+
+    li.innerHTML = `
+      <img src="${vet.image}" alt="${vet.name}" class="vet-img">
+      <h3>${vet.name}</h3>
+      <p>Specialty: ${vet.specialty}</p>
+      <p>Location: ${vet.location}</p>
+      <p>Phone: ${vet.contact}</p>
+      <button class="contact-btn">Contact Vet</button>
+      <button type="button" class="ok-btn">Ok</button> 
+    `;
+
+    // Add event listener for contact button
+    li.querySelector(".contact-btn").addEventListener("click", () => {
+      alert(` Contact ${vet.name}: ${vet.contact}`);
+    });
+
+    // Ok button
+    li.querySelector(".ok-btn").addEventListener("click", () => {
+      document.getElementById("vet-list").innerHTML = `
+      <div class="vet-card highlight">
+        <img src="${vet.image}" alt="${vet.name}" class="vet-img">
+        <h2>${vet.name}</h2>
+        <p>Specialty: ${vet.specialty}</p>
+        <p>Location: ${vet.location}</p>
+        <p>Phone: ${vet.contact}</p>
+        <button type="button" class="ok-btn">Ok</button>
+      </div>
+    `;
+
+      document.querySelector(".ok-btn").addEventListener("click", () => {
+        displayVets();
+      });
+    });
+
+    vetList.appendChild(li);
+  }
+
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const ownerName = document.getElementById("petOwnerName").value;
-    const petType = document.getElementById("petType").value;
+
     const location = document.getElementById("location").value.toLowerCase();
+    const specialty = document.getElementById("specialty").value.toLowerCase();
 
     fetch("http://localhost:3000/vets")
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         vetList.innerHTML = "";
-        const filteredVets = data.filter(vet =>
-          vet.location.toLowerCase().includes(location)
-        );
+        const filteredVets = data.filter(vet => {
+          const matchesLocation = location ? vet.location.toLowerCase().includes(location) : true;
+          const matchesSpecialty = specialty ? vet.specialty.toLowerCase().includes(specialty) : true;
+          return matchesLocation && matchesSpecialty;
 
+        });
         if (filteredVets.length === 0) {
-          document.getElementById("search-feedback").innerText =
-            "No vets available in this location!";
+          feedback.innerText = "No vets available in this location!";
         } else {
-          document.getElementById("search-feedback").innerText = "";
-          filteredVets.forEach(vet => {
-            const li = document.createElement("li");
-            li.classList.add("highlight");
-            li.innerHTML = `
-              <ul>
-                <li>Name: ${vet.name}</li>
-                <li>Specialty: ${vet.specialty}</li>
-                <li>Location: ${vet.location}</li>
-                <li>Phone: ${vet.contact}</li>
-              </ul>
-            `;
-            vetList.appendChild(li);
-          });
+          feedback.innerText = "";
+          filteredVets.forEach(vet => createVetCard(vet, true));
         }
-      });
+      }).catch(err => console.error("Error fetching vets:", err));
   });
 
-  displayVets(); // load on page start
+  displayVets();
 });
+

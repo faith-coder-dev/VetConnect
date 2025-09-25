@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VetConnect</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header>
-    <h1>VetConnect.</h1>
+    <h1>VetConnect</h1>
     <p>Connecting pet owners with nearby veterinarians</p>
   </header>
 
   <main>
+    <!--  Search form -->
     <section id="form-section">
-      <h2>Find a Vet</h2>
-      <form id="search-form">
+      <form id="search-form" class="search-bar">
         <input type="text" id="petOwnerName" placeholder="Your Name" required>
-        <input type="text" id="petType" placeholder="Your Pet: Dog,Cat" required>
-        <input type="text" id="location" placeholder="Your Location" required>
-        <button type="submit">Search</button>
-        <p id="search-feedback"></p>
 
+        <!-- Speciality Dropdown -->
+
+        <select id="specialty">
+          <option value="">Specialty</option>
+          <option value="Farm Animals">Farm Animals</option>
+          <option value="Internal Medicine">Internal Medicine</option>
+          <option value="Vaccinations">Vaccinations</option>
+          <option value="Exotic Pets">Exotic Pets</option>
+          <option value="Livestock">Livestock</option>
+          <option value="Dental Care">Dental Care</option>
+        </select>
+
+        <!-- Location Dropdown -->
+
+        <select id="location">
+          <option value="">Location</option>
+          <option value="Nairobi">Nairobi</option>
+          <option value="Mombasa">Mombasa</option>
+          <option value="Meru">Meru</option>
+          <option value="Kisumu">Kisumu</option>
+          <option value="Eldoret">Eldoret</option>
+          <option value="Nyeri">Nyeri</option>
+        </select>
+
+        <!-- Search Button -->
+
+        <button type="submit">Search</button>
       </form>
+      <p id="search-feedback"></p>
     </section>
+
 
     <section id="results">
       <h2>Available Vets :</h2>
@@ -33,5 +60,6 @@
 
   <script src="index.js"></script>
 </body>
-</html>
 
+
+</html>
