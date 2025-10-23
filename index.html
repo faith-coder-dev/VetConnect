@@ -2,61 +2,74 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>VetConnect</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <header>
-    <h1>VetConnect</h1>
-    <p>Connecting pet owners with nearby veterinarians</p>
+  <header class="navbar">
+    <div class="brand">
+      <span class="brand-text">VetConnect</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">About</a>
+    </nav>
   </header>
 
   <main>
-    <!--  Search form -->
-    <section id="form-section">
-      <form id="search-form" class="search-bar">
-        <input type="text" id="petOwnerName" placeholder="Your Name" required>
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Find trusted veterinary care near you</h1>
+        <p class="hero-sub">Professional, licensed veterinarians and clinics — fast booking, reliable care.</p>
 
-        <!-- Speciality Dropdown -->
+        <form id="search-form" class="search-form" autocomplete="off">
+          <input id="petOwnerName" type="text" placeholder="Your name " />
 
-        <select id="specialty">
-          <option value="">Specialty</option>
-          <option value="Farm Animals">Farm Animals</option>
-          <option value="Internal Medicine">Internal Medicine</option>
-          <option value="Vaccinations">Vaccinations</option>
-          <option value="Exotic Pets">Exotic Pets</option>
-          <option value="Livestock">Livestock</option>
-          <option value="Dental Care">Dental Care</option>
-        </select>
+          <select id="specialty" aria-label="Specialty">
+            <option value="">All specialties</option>
+            <option>Farm Animals</option>
+            <option>Internal Medicine</option>
+            <option>Vaccinations</option>
+            <option>Exotic Pets</option>
+            <option>Livestock</option>
+            <option>Dental Care</option>
+          </select>
 
-        <!-- Location Dropdown -->
+          <select id="location" aria-label="Location">
+            <option value="">All locations</option>
+            <option>Nairobi</option>
+            <option>Mombasa</option>
+            <option>Meru</option>
+            <option>Kisumu</option>
+            <option>Eldoret</option>
+            <option>Nyeri</option>
+          </select>
 
-        <select id="location">
-          <option value="">Location</option>
-          <option value="Nairobi">Nairobi</option>
-          <option value="Mombasa">Mombasa</option>
-          <option value="Meru">Meru</option>
-          <option value="Kisumu">Kisumu</option>
-          <option value="Eldoret">Eldoret</option>
-          <option value="Nyeri">Nyeri</option>
-        </select>
+          <button type="submit" aria-label="Search vets">Search</button>
+        </form>
 
-        <!-- Search Button -->
+        <p id="search-feedback" class="feedback" role="status" aria-live="polite"></p>
+      </div>
 
-        <button type="submit">Search</button>
-      </form>
-      <p id="search-feedback"></p>
+      <div class="hero-right" aria-hidden="true">
+        <img src="https://surl.li/bikick" alt="" />
+      </div>
     </section>
 
-
-    <section id="results">
-      <h2>Available Vets :</h2>
-      <ul id="vet-list"></ul>
+    <section id="results" class="results-section">
+      <h2>Available Veterinarians</h2>
+      <ul id="vet-list" class="vet-grid" role="list"></ul>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <p>2025 VetConnect — Professional veterinary care</p>
+  </footer>
 
   <script src="index.js"></script>
 </body>
