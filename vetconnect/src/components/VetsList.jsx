@@ -2,15 +2,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 
+/*
+  VetsList
+  - Expects `vets` prop to be an array of veterinarian objects.
+  - The app uses a static-first strategy: App sets vets from `public/vets.json` immediately,
+    then tries to refresh from an API. This component just renders whatever `vets` it receives.
+  - Small UX helpers are included (image fallback, like button state). These are non-destructive
+    UI helpers and can be removed to return to a simpler original version if you prefer.
+*/
+
 function VetsList({ vets }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedVet, setSelectedVet] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
-  const [likedVets, setLikedVets] = useState({}); // Track liked vets
+  const [likedVets, setLikedVets] = useState({});
 
-  const filteredVets = vets.filter((vet) =>
-    vet.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredVets = (vets || []).filter((vet) =>
+    vet?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleShow = (vet) => {
@@ -36,9 +45,25 @@ function VetsList({ vets }) {
     }));
   };
 
+
+  if (!vets || vets.length === 0) {
+    return (
+      <div className="container my-5 text-center">
+        <h2 className="fw-bold" style={{ color: "#28a745" }}>
+          Meet Our Veterinarians
+        </h2>
+        <div className="mt-4">
+          <div className="spinner-border text-success" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-2">Loading veterinarians...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container my-5">
-      {/* Search Bar */}
       <div className="text-center mb-4">
         <h2 className="fw-bold" style={{ color: "#28a745" }}>
           Meet Our Veterinarians
@@ -52,7 +77,6 @@ function VetsList({ vets }) {
         />
       </div>
 
-      {/* Vets Grid */}
       <div className="row">
         {filteredVets.length > 0 ? (
           filteredVets.map((vet) => (
@@ -69,6 +93,9 @@ function VetsList({ vets }) {
                   alt={vet.name}
                   className="card-img-top rounded-top-4"
                   style={{ height: "250px", objectFit: "cover" }}
+                  onError={(e) => {
+                    e.target.src = "https://via.placeholder.com/400x250?text=Vet+Image";
+                  }}
                 />
                 <div className="card-body text-center">
                   <h5 className="fw-bold" style={{ color: "#28a745" }}>
@@ -76,13 +103,17 @@ function VetsList({ vets }) {
                   </h5>
                   <p className="text-muted">{vet.specialty}</p>
 
-                  {/* Rating and Likes */}
                   <div className="d-flex justify-content-center align-items-center gap-2 mb-3">
                     <div>
-                      {[...Array(4)].map((_, i) => (
+                      {[...Array(Math.floor(vet.rating || 0))].map((_, i) => (
                         <i key={i} className="bi bi-star-fill text-warning"></i>
                       ))}
-                      <i className="bi bi-star-half text-warning"></i>
+                      {vet.rating % 1 >= 0.5 && (
+                        <i className="bi bi-star-half text-warning"></i>
+                      )}
+                      {[...Array(5 - Math.ceil(vet.rating || 0))].map((_, i) => (
+                        <i key={`empty-${i}`} className="bi bi-star text-warning"></i>
+                      ))}
                     </div>
                     <button
                       className="btn btn-light btn-sm rounded-circle shadow-sm d-flex align-items-center justify-content-center"
@@ -94,19 +125,17 @@ function VetsList({ vets }) {
                       }}
                     >
                       <i
-                        className={`bi ${
-                          likedVets[vet.id]
+                        className={`bi ${likedVets[vet.id]
                             ? "bi-heart-fill text-danger"
                             : "bi-heart text-secondary"
-                        }`}
+                          }`}
                       ></i>
                     </button>
                     <span className="text-muted small">
-                      {vet.likes + (likedVets[vet.id] ? 1 : 0)} Likes
+                      {(vet.likes || 0) + (likedVets[vet.id] ? 1 : 0)} Likes
                     </span>
                   </div>
 
-                  {/* Buttons */}
                   <div className="d-flex justify-content-center gap-2">
                     <Link
                       to={`/vets/${vet.id}`}
@@ -138,13 +167,10 @@ function VetsList({ vets }) {
             </div>
           ))
         ) : (
-          <p className="text-center text-muted mt-4">
-            No veterinarians found.
-          </p>
+          <p className="text-center text-muted mt-4">No veterinarians found.</p>
         )}
       </div>
 
-      {/* Appointment Modal */}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -160,6 +186,7 @@ function VetsList({ vets }) {
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
                 required
+                min={new Date().toISOString().split("T")[0]}
               />
             </Form.Group>
             <div className="text-end mt-3">

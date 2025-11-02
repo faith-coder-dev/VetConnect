@@ -3,7 +3,7 @@ import React from "react";
 function About() {
   return (
     <div className="about-page container py-5">
-      {/* Header Section */}
+   
       <div className="text-center mb-5">
         <h1 className="fw-bold" style={{ color: "#28a745" }}>
           About <span style={{ color: "#ff66a3" }}>VetConnect</span>
@@ -15,9 +15,9 @@ function About() {
         </p>
       </div>
 
-      {/* Mission, Vision, Values */}
+    
       <div className="row text-center g-4">
-        {/* Mission */}
+      
         <div className="col-md-4">
           <div
             className="card shadow-sm p-4 border-0 rounded-4"
@@ -45,7 +45,6 @@ function About() {
           </div>
         </div>
 
-        {/* Vision */}
         <div className="col-md-4">
           <div
             className="card shadow-sm p-4 border-0 rounded-4"
@@ -73,7 +72,7 @@ function About() {
           </div>
         </div>
 
-        {/* Values */}
+      
         <div className="col-md-4">
           <div
             className="card shadow-sm p-4 border-0 rounded-4"
@@ -102,7 +101,6 @@ function About() {
         </div>
       </div>
 
-      {/* Closing Statement */}
       <div className="text-center mt-5">
         <p className="text-muted w-75 mx-auto">
           VetConnect is more than a platform — it is a community of pet lovers and professionals

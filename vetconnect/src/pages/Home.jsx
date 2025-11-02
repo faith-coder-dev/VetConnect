@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 function Home() {
   return (
     <div>
-      {/* ===== HERO SECTION ===== */}
+    
       <section
         className="hero-section"
         style={{
@@ -37,12 +37,12 @@ function Home() {
               img: "https://vetoman.com/wp-content/uploads/2016/11/member_1-1.jpg",
             },
             {
-              name: "Dr. Celestine Wangari",
+              name: "Dr. Elena Mwende",
               specialty: "Small Animal Specialist",
               img: "https://i.pinimg.com/736x/81/27/9c/81279c034918445fbe4d9e1a4c8e9efb.jpg",
             },
             {
-              name: "Dr. Yasir Yusuf",
+              name: "Dr. Yusuf Ahmed",
               specialty: "Veterinary Pharmacy",
               img: "https://img.freepik.com/premium-photo/portrait-smiling-young-muslim-male-veterinarian-standing-outside-hospital-looking_321831-18449.jpg",
             },

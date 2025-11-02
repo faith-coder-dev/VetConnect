@@ -8,7 +8,7 @@ function NavBar() {
       style={{ backgroundColor: "#fff" }}
     >
       <div className="container">
-        {/* Brand */}
+ 
         <Link
           className="navbar-brand fw-bold d-flex align-items-center"
           to="/"
@@ -18,7 +18,7 @@ function NavBar() {
           VetConnect
         </Link>
 
-        {/* Toggler */}
+      
         <button
           className="navbar-toggler"
           type="button"
@@ -28,7 +28,7 @@ function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Nav Links */}
+    
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">

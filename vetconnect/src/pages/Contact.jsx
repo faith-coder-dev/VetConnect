@@ -16,7 +16,7 @@ function Contact() {
 
   return (
     <div className="contact-page py-5">
-      {/* Header */}
+      
       <div className="text-center mb-5">
         <h1 className="fw-bold" style={{ color: "#28a745" }}>
           Get in <span style={{ color: "#ff66a3" }}>Touch</span>
@@ -26,7 +26,7 @@ function Contact() {
         </p>
       </div>
 
-      {/* Contact Form */}
+     
       <div className="container">
         <form
           onSubmit={handleSubmit}
@@ -88,7 +88,7 @@ function Contact() {
         </form>
       </div>
 
-      {/* Contact Details */}
+     
       <div className="text-center mt-5">
         <h5 className="fw-bold text-success">Other Ways to Reach Us</h5>
         <p className="text-muted">

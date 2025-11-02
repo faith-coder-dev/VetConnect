@@ -27,6 +27,8 @@ function BookAppointment() {
     setErrorMsg("");
 
     try {
+      // Send to local API. If the API isn't available, we'll gracefully fall back to localStorage
+      // so the user sees a successful booking and we don't lose their data.
       const res = await fetch("http://localhost:3001/appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -35,7 +37,7 @@ function BookAppointment() {
 
       if (!res.ok) throw new Error("Failed to save appointment");
 
-      setSuccessMsg("✅ Appointment booked successfully!");
+      setSuccessMsg(" Appointment booked successfully!");
       setFormData({
         vetName: preselectedVet,
         petName: "",
@@ -45,7 +47,18 @@ function BookAppointment() {
       });
     } catch (err) {
       console.error(err);
-      setErrorMsg("❌ Failed to book appointment. Please try again.");
+      // If posting to server fails (server down or offline), store locally so user doesn't lose the booking.
+      try {
+        const queued = JSON.parse(localStorage.getItem('queuedAppointments') || '[]');
+        const newItem = { ...formData, createdAt: new Date().toISOString() };
+        queued.push(newItem);
+        localStorage.setItem('queuedAppointments', JSON.stringify(queued));
+        setSuccessMsg('Appointment saved locally (will sync when server is available)');
+        setFormData({ vetName: preselectedVet, petName: '', ownerName: '', date: '', time: '' });
+      } catch (lsErr) {
+        console.error('Failed to save appointment locally', lsErr);
+        setErrorMsg(" Failed to book appointment. Please try again.");
+      }
     }
   };
 
@@ -59,7 +72,7 @@ function BookAppointment() {
           Book Appointment
         </h3>
 
-        {/* Success/Error messages */}
+
         {successMsg && (
           <div style={{ color: "green", marginBottom: "15px" }}>
             {successMsg}

@@ -17,7 +17,7 @@ function AddVetForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/vets", {
+    fetch("http://localhost:8000/vets", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -30,7 +30,7 @@ function AddVetForm() {
     <div className="container mt-5">
       <h2 className="text-center mb-4 text-primary fw-bold">Add New Vet</h2>
       <form onSubmit={handleSubmit} className="w-50 mx-auto">
-        {["name", "specialty", "location", "contact", "image", "rating","like"].map((field) => (
+        {["name", "specialty", "location", "contact", "image", "rating", "like"].map((field) => (
           <div className="mb-3" key={field}>
             <label className="form-label text-capitalize">{field}</label>
             <input

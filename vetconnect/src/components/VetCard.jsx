@@ -18,7 +18,7 @@ function VetCard({ vet, onLike }) {
             <i className="bi bi-geo-alt text-success"></i> {vet.location}
           </p>
 
-          {/* Rating Stars */}
+          
           <div className="mb-2">
             {[...Array(5)].map((_, i) => (
               <i
@@ -34,7 +34,7 @@ function VetCard({ vet, onLike }) {
             ))}
           </div>
 
-          {/* Buttons */}
+     
           <div className="d-flex justify-content-center gap-2 mt-2">
             <Link to={`/vets/${vet.id}`} className="btn btn-outline-primary btn-sm">
               <i className="bi bi-person-vcard"></i> View Details
@@ -49,7 +49,7 @@ function VetCard({ vet, onLike }) {
             </Link>
           </div>
 
-          {/* Likes */}
+      
           <div className="mt-3">
             <button
               className="btn btn-sm btn-outline-danger"
