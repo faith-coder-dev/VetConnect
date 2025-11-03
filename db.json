@@ -2,7 +2,7 @@
   "vets": [
     {
       "id": "1",
-      "name": "Dr. Martin Kombe",
+      "name": "Dr. Martin Brown",
       "location": "Nairobi",
       "specialty": "Farm Animals",
       "contact": "0708123459",
@@ -12,7 +12,7 @@
     },
     {
       "id": "2",
-      "name": "Dr.Marian Osman",
+      "name": "Dr.Samara Bay",
       "location": "Nyeri",
       "specialty": "Internal Medicine",
       "contact": "0798987654",
@@ -22,7 +22,7 @@
     },
     {
       "id": "3",
-      "name": "Dr.Cade Malili",
+      "name": "Dr.Harison Wesley",
       "location": "Meru",
       "specialty": "Vaccinations",
       "contact": "0712567879",
@@ -32,7 +32,7 @@
     },
     {
       "id": "4",
-      "name": "Dr. Winfred Kemunto",
+      "name": "Dr. Winnie Jessyn",
       "location": "Kisumu",
       "specialty": "Exotic Pets",
       "contact": "0723987456",
@@ -42,7 +42,7 @@
     },
     {
       "id": "5",
-      "name": "Dr.Wambugu Charles",
+      "name": "Dr.Charles Mwangi",
       "location": "Mombasa",
       "specialty": "Livestocks",
       "contact": "07123456789",
@@ -52,7 +52,7 @@
     },
     {
       "id": "6",
-      "name": "Dr.Martha Kendi",
+      "name": "Dr.Princess Rania",
       "location": "Turkana",
       "specialty": "Ophthalmology",
       "contact": "07214435664",
@@ -72,7 +72,7 @@
     },
     {
       "id": "8",
-      "name": "Dr.Celestine Wangari",
+      "name": "Dr.Elena Mwende",
       "location": "Migori",
       "specialty": "Small Animal Specialist",
       "contact": "0723456789",
@@ -82,7 +82,7 @@
     },
     {
       "id": "9",
-      "name": "Dr. Yasir Yusuf",
+      "name": "Dr. Yusuf Ahmed",
       "location": "Malindi",
       "specialty": "Veterinary Pharmacy",
       "contact": "0734567890",
@@ -91,5 +91,22 @@
       "rating": 5
     }
   ],
-  "appointments": []
+  "appointments": [
+    {
+      "vetName": "Dr. Martin Kombe",
+      "petName": "Buddy",
+      "ownerName": "You",
+      "date": "2025-11-10",
+      "time": "10:00",
+      "id": 1
+    },
+    {
+      "vetName": "Dr.Samara Bay",
+      "petName": "Hello Kitty",
+      "ownerName": "Cinnamon",
+      "date": "2025-12-07",
+      "time": "11:00",
+      "id": 2
+    }
+  ]
 }

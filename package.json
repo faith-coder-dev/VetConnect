@@ -1,0 +1,23 @@
+{
+    "name": "vetconnect-backend",
+    "version": "1.0.0",
+    "description": "Backend for VetConnect using JSON Server",
+    "private": true,
+    "author": "Faith",
+    "license": "MIT",
+    "scripts": {
+        "start": "json-server --watch db.json --port 10000"
+    },
+    "dependencies": {
+        "json-server": "^0.17.4"
+    },
+    "engines": {
+        "node": ">=18.x"
+    },
+    "keywords": [
+        "vetconnect",
+        "backend",
+        "json-server",
+        "api"
+    ]
+}
