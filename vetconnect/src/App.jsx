@@ -34,7 +34,8 @@ function App() {
 
       // Try API in background. If it succeeds, replace the static data.
       try {
-        const apiRes = await fetch('http://localhost:3001/vets');
+        const apiRes = await fetch('https://vetconnect-3.onrender.com/vets');
+
         if (apiRes.ok) {
           const apiData = await apiRes.json();
           setVets(apiData);
@@ -52,11 +53,12 @@ function App() {
 
   const addVet = async (newVet) => {
     try {
-      const res = await fetch("http://localhost:3001/vets", {
+      const res = await fetch("https://vetconnect-3.onrender.com/vets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newVet),
       });
+
       if (!res.ok) throw new Error('Failed to add vet');
       const data = await res.json();
       setVets(prev => [...prev, data]);
